@@ -134,14 +134,20 @@ describe("angular", function() {
     })
   })
 
-  describe("modules", function() {
-    it('property should contain all defined modules', function() {
-      angular.module('testModule1', [])
-      angular.module('testModule2', [])
+  describe("controllers", function() {
+    it('property should contain all defined controllers', function() {
+      angular
+        .module('testModule1', [])
+        .controller('testController1', ['asdf', function (asd) {}])
+        .controller('testController2', ['asdf', function (asd) {}]);
 
-      angular.modules.should.have.a.lengthOf(2)
+      angular.modules.should.have.a.lengthOf(1)
       angular.modules[0].should.have.property('name', 'testModule1')
-      angular.modules[1].should.have.property('name', 'testModule2')
+
+      var testModule1 = angular.modulesMap['testModule1'];
+      testModule1.controllers.should.have.a.lengthOf(2);
+      testModule1.controllers[0].should.have.property('name', 'testController1');
+      testModule1.controllers[1].should.have.property('name', 'testController2');
     })
   })
 })

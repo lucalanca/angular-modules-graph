@@ -4,6 +4,7 @@ function Module(name, deps) {
   this.name = name
   this.modules = deps
   this.items = []
+  this.controllers = [];
 }
 
 var methods = ['constant', 'controller', 'directive', 'factory', 'filter', 'provider', 'service', 'value']
@@ -38,6 +39,12 @@ methods.forEach(function(method) {
     return this
   }
 })
+
+Module.prototype.controller = function (name, controllerDefinition) {
+  this.controllers.push({'name': name});
+  this.items.push(name);
+  return this;
+}
 
 Module.prototype.run = function() {
   return this

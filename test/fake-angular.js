@@ -159,7 +159,7 @@ describe("angular", function() {
       testModule1.controllers[1].deps[1].should.be.equal('dep3');
     })
 
-it('property should contain all defined controllers with function definition', function() {
+    it('property should contain all defined controllers with function definition', function() {
       angular
         .module('testModule1', [])
         .controller('testController1', function (dep1) {})

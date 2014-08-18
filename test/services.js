@@ -1,0 +1,36 @@
+var should = require('should');
+
+describe("factories", function() {
+  var angular
+
+  beforeEach(function() {
+    angular = require('../src/fake-angular')()
+  })
+
+  it('property should contain all defined services with variable function definition', function() {
+    function testService (dep1) {
+      return {
+        attr:   "attribute",
+        getFoo: function (foo) {},
+        getBar: function (bar) {}
+      }
+    };
+
+    angular
+      .module('testModule1', [])
+      .factory('testService', testService);
+
+    var testModule1 = angular.modulesMap['testModule1'];
+    testModule1.services.should.be.a.Array;
+    testModule1.services.should.have.a.lengthOf(1);
+    testModule1.services[0].name.should.be.equal('testService');
+    testModule1.services[0].deps.should.be.a.Array;
+    testModule1.services[0].deps.should.have.a.lengthOf(1);
+    testModule1.services[0].deps[0].should.be.equal('dep1');
+
+    testModule1.services[0].api.should.be.a.Array;
+    testModule1.services[0].api.indexOf('attr').should.not.be.equal(-1);
+    testModule1.services[0].api.indexOf('getFoo').should.not.be.equal(-1);
+    testModule1.services[0].api.indexOf('getBar').should.not.be.equal(-1);
+  })
+})

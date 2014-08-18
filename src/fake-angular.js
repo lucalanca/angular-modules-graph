@@ -5,6 +5,7 @@ function Module(name, deps) {
   this.modules = deps
   this.items = []
   this.controllers = [];
+  this.services = [];
 }
 
 var methods = ['constant', 'controller', 'directive', 'factory', 'filter', 'provider', 'service', 'value']
@@ -35,23 +36,45 @@ var globalApis = ['lowercase',
 
 methods.forEach(function(method) {
   Module.prototype[method] = function addItem(name) {
-    this.items.push(name)
-    return this
+    this.items.push(name);
+    return this;
   }
 })
 
-Module.prototype.controller = function (name, deps) {
-  var definition;
-  if (deps instanceof Array) {
-    definition = deps.pop();
-  } else if (deps instanceof Function) {
-    definition = deps;
+function angularDepsToStringDeps (angularDeps) {
+  var deps, definition;
+  if (angularDeps instanceof Array) {
+    definition = angularDeps.pop();
+    deps = angularDeps;
+  } else if (angularDeps instanceof Function) {
+    definition = angularDeps;
     var deps = /\(([^)]+)/.exec(definition);
     if (deps[1]) {
         deps = deps[1].split(/\s*,\s*/);
     }
   }
-  this.controllers.push({'name': name, 'deps': deps});
+
+  return { deps: deps, definition: definition };
+};
+
+Module.prototype.controller = function (name, deps) {
+  this.controllers.push({
+    'name': name,
+    'deps': angularDepsToStringDeps(deps).deps
+  });
+  this.items.push(name);
+  return this;
+}
+
+Module.prototype.factory = function (name, deps) {
+  var angularDeps = angularDepsToStringDeps(deps);
+  // console.log('yeah', Object.keys(angularDeps.definition()));
+  this.services.push({
+    'name': name,
+    'deps': angularDeps.deps,
+    'api': Object.keys(
+      angularDeps.definition instanceof Function ? angularDeps.definition() : {})
+  });
   this.items.push(name);
   return this;
 }

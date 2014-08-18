@@ -41,8 +41,15 @@ methods.forEach(function(method) {
 })
 
 Module.prototype.controller = function (name, deps) {
+  var definition;
   if (deps instanceof Array) {
-    var definition = deps.pop();
+    definition = deps.pop();
+  } else if (deps instanceof Function) {
+    definition = deps;
+    var deps = /\(([^)]+)/.exec(definition);
+    if (deps[1]) {
+        deps = deps[1].split(/\s*,\s*/);
+    }
   }
   this.controllers.push({'name': name, 'deps': deps});
   this.items.push(name);

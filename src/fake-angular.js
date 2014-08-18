@@ -40,8 +40,11 @@ methods.forEach(function(method) {
   }
 })
 
-Module.prototype.controller = function (name, controllerDefinition) {
-  this.controllers.push({'name': name});
+Module.prototype.controller = function (name, deps) {
+  if (deps instanceof Array) {
+    var definition = deps.pop();
+  }
+  this.controllers.push({'name': name, 'deps': deps});
   this.items.push(name);
   return this;
 }

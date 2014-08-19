@@ -42,20 +42,22 @@ methods.forEach(function(method) {
 })
 
 function angularDepsToStringDeps (angularDeps) {
-  var deps, definition;
+  var deps, definition, angularDepsStr;
   if (angularDeps instanceof Array) {
     definition = angularDeps.pop();
     deps = angularDeps;
   } else if (angularDeps instanceof Function) {
     definition = angularDeps;
-    var deps = /\(([^)]+)/.exec(definition);
+    // We just care about the wrapper function to the dependencies
+    angularDepsStr = "" + angularDeps;
+    angularDepsStr = angularDepsStr.slice(0, angularDepsStr.indexOf('{'));
+    var deps = /\(([^)]+)/.exec(angularDepsStr);
     if (deps && deps.length && deps[1]) {
-        deps = deps[1].split(/\s*,\s*/);
+      deps = deps[1].split(/\s*,\s*/);
     } else {
       deps = [];
     }
   }
-
   return { deps: deps, definition: definition };
 };
 
@@ -70,7 +72,6 @@ Module.prototype.controller = function (name, deps) {
 
 Module.prototype.factory = function (name, deps) {
   var angularDeps = angularDepsToStringDeps(deps);
-  // console.log('yeah', Object.keys(angularDeps.definition()));
   this.services.push({
     'name': name,
     'deps': angularDeps.deps,

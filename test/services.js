@@ -7,6 +7,36 @@ describe("factories", function() {
     angular = require('../src/fake-angular')()
   })
 
+  it('factories with no dependencies should have an empty array', function () {
+    function testService () {
+      return {
+        attr:   "attribute",
+        getFoo: function (foo) {},
+        getBar: function (bar) {}
+      }
+    };
+
+    var testService2 = [function testService () {
+      return {
+        attr:   "attribute",
+        getFoo: function (foo) {},
+        getBar: function (bar) {}
+      }
+    }];
+
+    angular
+      .module('testModule1', [])
+      .factory('testService', testService)
+      .factory('testService2', testService2);
+
+
+    var testModule1 = angular.modulesMap['testModule1'];
+    testModule1.services[1].deps.should.be.a.Array;
+    testModule1.services[1].deps.should.have.a.lengthOf(0);
+    testModule1.services[0].deps.should.be.a.Array;
+    testModule1.services[0].deps.should.have.a.lengthOf(0);
+  })
+
   it('property should contain all defined services with variable function definition', function() {
     function testService (dep1) {
       return {

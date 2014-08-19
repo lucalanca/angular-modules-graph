@@ -139,4 +139,23 @@ describe("controllers", function() {
     testModule1.controllers[1].deps[0].should.be.equal('dep2');
     testModule1.controllers[1].deps[1].should.be.equal('dep3');
   })
+
+  it('excludes angular dependencies', function () {
+    function testController1 ($scope, dep1) {};
+    var testController2 = ['$scope', 'dep3', function ($scope, dep3) {}];
+
+      angular
+        .module('testModule1', [])
+        .controller('testController1', testController1)
+        .controller('testController2', testController2);
+
+      var testModule1 = angular.modulesMap['testModule1'];
+      testModule1.controllers[0].deps.should.be.a.Array;
+      testModule1.controllers[0].deps.should.have.a.lengthOf(1);
+      testModule1.controllers[0].deps[0].should.be.equal('dep1');
+
+      testModule1.controllers[1].deps.should.be.a.Array;
+      testModule1.controllers[1].deps.should.have.a.lengthOf(1);
+      testModule1.controllers[1].deps[0].should.be.equal('dep3');
+  })
 })

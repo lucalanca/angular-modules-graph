@@ -42,7 +42,7 @@ methods.forEach(function(method) {
 })
 
 function angularDepsToStringDeps (angularDeps) {
-  var deps, definition, angularDepsStr;
+var deps, definition, angularDepsStr, depsProcessed = [];
   if (angularDeps instanceof Array) {
     definition = angularDeps.pop();
     deps = angularDeps;
@@ -58,7 +58,14 @@ function angularDepsToStringDeps (angularDeps) {
       deps = [];
     }
   }
-  return { deps: deps, definition: definition };
+  if (deps && deps.length) {
+    deps.forEach(function (dep) {
+      if (dep.split('')[0] !== '$') {
+        depsProcessed.push(dep);
+      }
+    });
+  }
+  return { deps: depsProcessed, definition: definition };
 };
 
 Module.prototype.controller = function (name, deps) {

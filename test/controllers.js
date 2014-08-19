@@ -7,6 +7,35 @@ describe("controllers", function() {
     angular = require('../src/fake-angular')()
   })
 
+  it('should have an empty property when no controller are present', function () {
+    angular.module('testModule1');
+    angular.module('testModule2');
+
+    angular.modulesMap['testModule1'].controllers.should.be.a.Array;
+    angular.modulesMap['testModule1'].controllers.should.have.a.lengthOf(0);
+
+    angular.modulesMap['testModule2'].controllers.should.be.a.Array;
+    angular.modulesMap['testModule2'].controllers.should.have.a.lengthOf(0);
+
+  })
+
+  it('should have an empty dependencies array when there are no dependencies', function () {
+    angular
+      .module('testModule1')
+      .controller('myController', function () {})
+      .controller('myController2', [function () {}]);
+
+    angular.modulesMap['testModule1'].controllers.should.be.a.Array;
+    angular.modulesMap['testModule1'].controllers.should.have.a.lengthOf(2);
+
+    angular.modulesMap['testModule1'].controllers[0].deps.should.be.a.Array;
+    angular.modulesMap['testModule1'].controllers[0].deps.should.have.a.lengthOf(0);
+
+    angular.modulesMap['testModule1'].controllers[1].deps.should.be.a.Array;
+    angular.modulesMap['testModule1'].controllers[1].deps.should.have.a.lengthOf(0);
+
+  })
+
   it('property should contain all defined controllers with array definition', function() {
     angular
       .module('testModule1', [])

@@ -49,8 +49,10 @@ function angularDepsToStringDeps (angularDeps) {
   } else if (angularDeps instanceof Function) {
     definition = angularDeps;
     var deps = /\(([^)]+)/.exec(definition);
-    if (deps[1]) {
+    if (deps && deps.length && deps[1]) {
         deps = deps[1].split(/\s*,\s*/);
+    } else {
+      deps = [];
     }
   }
 

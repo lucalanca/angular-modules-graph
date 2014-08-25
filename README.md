@@ -6,6 +6,7 @@ Create a graph of angular module definitions, extracted from [grunt-angular-modu
 [ ![Codeship Status for lucalanca/angular-modules-graph](https://www.codeship.io/projects/43e2f770-0ead-0132-1978-5ad6f07ad273/status)](https://www.codeship.io/projects/32481)
 
 
+
 ```js
 var scripts = [
 {

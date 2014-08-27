@@ -1,27 +1,27 @@
 {
-  "name": "angular-modules-graph",
+  "name": "angular-architecture-graph",
   "version": "0.1.0",
-  "description": "Create a graph of angular module definitions",
+  "description": "Create a graph of an angular project's architecture",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
   },
   "keywords": [
     "angular",
-    "modules",
+    "architecture",
     "graph"
   ],
-  "author": "Carlo Colombo <@lit_car>",
+  "author": "João Figueiredo <@lucalanca>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlo-colombo/angular-modules-graph.git"
+    "url": "git://github.com/lucalanca/angular-architecture-graph.git"
   },
   "bugs": {
-    "url": "https://github.com/carlo-colombo/angular-modules-graph/issues"
+    "url": "https://github.com/lucalanca/angular-architecture-graph/issues"
   },
   "licenses": [{
     "type": "MIT",
-    "url": "https://github.com/carlo-colombo/angular-modules-graph/blob/master/LICENSE-MIT"
+    "url": "https://github.com/lucalanca/angular-architecture-graph/blob/master/LICENSE-MIT"
   }],
   "devDependencies": {
     "mocha": "^1.18.2",

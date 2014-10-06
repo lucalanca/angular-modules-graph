@@ -1,0 +1,4 @@
+test:
+  - eslint
+  - mochaTest:test
+  - watch

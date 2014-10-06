@@ -19,15 +19,26 @@
   "bugs": {
     "url": "https://github.com/lucalanca/angular-architecture-graph/issues"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/lucalanca/angular-architecture-graph/blob/master/LICENSE-MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/lucalanca/angular-architecture-graph/blob/master/LICENSE-MIT"
+    }
+  ],
   "devDependencies": {
-    "mocha": "^1.18.2",
-    "should": "^3.2.0",
-    "grunt-mocha-test": "^0.10.0",
     "grunt": "^0.4.4",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-eslint": "^1.1.0",
+    "grunt-mocha-test": "^0.10.0",
+    "load-grunt-config": "^0.13.1",
+    "load-grunt-tasks": "^0.6.0",
+    "mocha": "^1.18.2",
+    "nodegit": "^0.1.4",
+    "q-io": "^1.11.5",
+    "should": "^3.2.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "pluralize": "^1.0.2"
   }
 }

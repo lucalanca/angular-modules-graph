@@ -1,6 +1,6 @@
 {
   "name": "angular-architecture-graph",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Create a graph of an angular project's architecture",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-eslint": "^1.1.0",
     "grunt-mocha-test": "^0.10.0",
+    "grunt-publish": "0.0.5",
     "load-grunt-config": "^0.13.1",
     "load-grunt-tasks": "^0.6.0",
     "mocha": "^1.18.2",

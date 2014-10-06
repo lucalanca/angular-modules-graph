@@ -1,4 +1,6 @@
 /*eslint no-unused-expressions: 0, no-unused-vars: 0, no-eval: 0*/
+"use strict";
+
 
 var angular = require("./src/fake-angular")(),
   document = {}, window = {}, navigator = {};

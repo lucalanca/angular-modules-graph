@@ -1,7 +1,7 @@
-var should = require("should");
-
 /*eslint no-unused-expressions: 0, no-unused-vars: 0*/
+"use strict";
 
+var should = require("should");
 
 describe("angular-modules-graph", function() {
   var angularModulesGraph = require("../index.js");

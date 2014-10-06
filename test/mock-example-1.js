@@ -1,4 +1,6 @@
 /*eslint no-unused-vars: 0, no-unused-expr: 0*/
+"use strict";
+
 var should = require("should");
 
 describe("process factories", function() {

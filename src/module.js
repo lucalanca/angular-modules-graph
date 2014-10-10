@@ -8,7 +8,6 @@ var api   = require("./api");
 
 function Module(name, deps, options) {
   this.name = name;
-  this.modules = deps;
   this.items = [];
   this.controllers = [];
   this.services = [];
@@ -18,6 +17,13 @@ function Module(name, deps, options) {
   this.directives = [];
 
   this.options = options;
+
+  if (this.options.hideAngularServices) {
+    deps = _.filter(deps, function (dep) {
+      return !_.contains(api.angularServices, dep);
+    });
+  }
+  this.modules = deps;
 }
 
 // Adds module methods

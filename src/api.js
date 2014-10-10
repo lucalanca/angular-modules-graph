@@ -59,6 +59,7 @@ module.exports = {
     "$sce",
     "$templateRequest",
     "$timeout",
-    "$window"
+    "$window",
+    "ng"
   ]
 };

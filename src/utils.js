@@ -19,9 +19,8 @@ function parseAngularDeps (angularDeps) {
   }
   if (deps && deps.length) {
     deps.forEach(function (dep) {
-      // if (dep.split("")[0] !== "$") {
-        depsProcessed.push(dep.replace(" ", ""));
-      // }
+      dep = dep.trim();
+      depsProcessed.push(dep);
     });
   }
   return { deps: depsProcessed, definition: definition };

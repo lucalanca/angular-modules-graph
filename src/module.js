@@ -1,10 +1,12 @@
 "use strict";
 
+var _ = require("lodash");
+
 var pluralize = require("pluralize");
 var utils = require("./utils");
 var api   = require("./api");
 
-function Module(name, deps) {
+function Module(name, deps, options) {
   this.name = name;
   this.modules = deps;
   this.items = [];
@@ -14,6 +16,8 @@ function Module(name, deps) {
   this.filters = [];
   this.providers = [];
   this.directives = [];
+
+  this.options = options;
 }
 
 // Adds module methods
@@ -32,10 +36,17 @@ api.methods.forEach(function(method) {
     if (!name) {
       return this;
     }
-    var deps2 = utils.parseAngularDeps(deps).deps;
+    deps = utils.parseAngularDeps(deps).deps;
+
+    // Exclude angular services from dependencies
+    if (this.options.hideAngularServices) {
+      deps = _.filter(deps, function (dep) {
+        return !_.contains(api.angularServices, dep);
+      });
+    }
     this[pluralize(method)].push({
       "name": name,
-      "deps": deps2
+      "deps": deps
     });
     this.items.push(name);
     return this;

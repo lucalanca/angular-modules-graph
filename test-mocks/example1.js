@@ -24,12 +24,12 @@ module.exports = function(angular) {
 
 
   angular.module("example1")
-  angular.module("example1").factory("NoDependenciesService1",       NoDependenciesService);
-  angular.module("example1").factory("NoDependenciesService2",       NoDependenciesService2);
-  angular.module("example1").factory("OneAngularDependencyService1", OneAngularDependencyService1);
-  angular.module("example1").factory("OneAngularDependencyService2", OneAngularDependencyService2);
-  angular.module("example1").factory("MixedDependenciesService1",    MixedDependenciesService1);
-  angular.module("example1").factory("MixedDependenciesService2",    MixedDependenciesService2);
+  angular.module("example1").factory("NoDependenciesService1",         NoDependenciesService);
+  angular.module("example1").factory("NoDependenciesService2",         NoDependenciesService2);
+  angular.module("example1").factory("OneAngularDependencyService1",   OneAngularDependencyService1);
+  angular.module("example1").factory("OneAngularDependencyService2",   OneAngularDependencyService2);
+  angular.module("example1").factory("MixedDependenciesService1",      MixedDependenciesService1);
+  angular.module("example1").factory("MixedDependenciesService2",      MixedDependenciesService2);
 
 
 

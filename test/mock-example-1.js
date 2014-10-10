@@ -70,4 +70,28 @@ describe("process factories", function() {
       assertions(angular.modulesMap.example1);
     });
   });
+
+  describe("parses options", function () {
+
+    var options = {
+      hideAngularServices: true
+    };
+
+    beforeEach(function()  {
+      angular = require("../src/fake-angular")(options);
+      require("../test-mocks/example1")(angular);
+    });
+
+    it("should hide angular services", function () {
+      angular.options.hideAngularServices.should.be.equal(true);
+
+      var MixedDependenciesCtrl1 = angular.modulesMap.example1.controllers[4];
+
+      // Note, the $http dependency was excluded
+      MixedDependenciesCtrl1.deps.should.have.a.lengthOf(2);
+      MixedDependenciesCtrl1.deps[0].should.be.equal("ServiceX");
+      MixedDependenciesCtrl1.deps[1].should.be.equal("ServiceY");
+    });
+
+  });
 });

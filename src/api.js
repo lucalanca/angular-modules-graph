@@ -33,5 +33,32 @@ module.exports = {
     "bootstrap",
     "injector",
     "element"
+  ],
+  angularServices: [
+    "$anchorScroll",
+    "$animate",
+    "$cacheFactory",
+    "$templateCache",
+    "$compile",
+    "$controller",
+    "$document",
+    "$exceptionHandler",
+    "$filter",
+    "$http",
+    "$httpBackend",
+    "$interpolate",
+    "$interval",
+    "$locate",
+    "$location",
+    "$log",
+    "$parse",
+    "$q",
+    "$rootElement",
+    "$rootScope",
+    "$sceDelegate",
+    "$sce",
+    "$templateRequest",
+    "$timout",
+    "$window"
   ]
 };

@@ -22,6 +22,8 @@ This project is a node utility that analyses an angular project and exports a gr
   ])
   ```
 
+It was designed with grunt in mind. Use it with [grunt-angular-modules-graph](https://github.com/lucalanca/grunt-angular-modules-graph).
+
 3. Do whatever you want with the resulted architecture object
 
 ## About

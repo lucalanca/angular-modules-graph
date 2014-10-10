@@ -58,7 +58,7 @@ module.exports = {
     "$sceDelegate",
     "$sce",
     "$templateRequest",
-    "$timout",
+    "$timeout",
     "$window"
   ]
 };

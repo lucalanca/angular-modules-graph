@@ -10,7 +10,9 @@ module.exports = function(scripts, options) {
   var results = scripts.map(function(content) {
 
     try {
-      eval(content.text);
+      (function() {
+        eval(content.text);
+      }.call(window));
     } catch (e) {
       return {
         id: content.id,

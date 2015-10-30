@@ -55,6 +55,22 @@ describe("angular-modules-graph", function() {
         res[0].error.should.be.true;
         res[0].exception.should.be.an.Exception;
       });
+      it("should evaluate globals passed through options.window", function() {
+        var script = {
+          id: "example",
+          text: "angular.module('TestModule', defined_global)"
+        };
+        var options = {
+          window: {
+            "defined_global": {}
+          }
+        };
+        var res = angularModulesGraph([script], options).results;
+
+        res.should.have.a.lengthOf(1);
+        res[0].should.have.properties("id", "error");
+        res[0].id.should.be.eql("example");
+      });
     });
   });
 });

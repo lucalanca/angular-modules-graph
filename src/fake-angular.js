@@ -20,6 +20,12 @@ module.exports = function (options) {
     module: function(name, deps) {
       var module;
 
+      if(deps) {
+        var ngMaterialDepIndex = deps.indexOf('ngMaterial');
+        if(ngMaterialDepIndex !== -1) {
+          deps.splice(ngMaterialDepIndex, 1);
+        }
+      }
       // Module was inserted before
       if (this.modulesNames.indexOf(name) !== -1) {
         module = this.modulesMap[name];
